@@ -1,0 +1,9 @@
+.vscode/
+index_files/
+*.docx
+*.pdf
+*.txt
+*.jpg
+*.png
+bella.php
+test.php

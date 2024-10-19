@@ -1,0 +1,114 @@
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+h2, h3, h1 {
+    text-align: center;
+    color: #333;
+}
+section {
+    width: 90%;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+tr:nth-child(even) {
+    background-color: #45d3e667;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+.home {
+    width: 50vw;
+}
+.home th {
+    background-color: #0099AD;
+    font-weight: bold;
+    color: #333;
+}
+.home tr:hover {
+    background-color: #00c6e0b6;
+}
+table a{
+    margin-left: 5px;
+}
+a {
+    text-decoration: none;
+    color: #333;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    margin: 0;
+}
+a:hover {
+    background-color: #333;
+    color: #fff;
+}
+.button {
+    color: #333;
+    background-color: #fff;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    margin: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.button:hover {
+    color: #fff;
+    background-color: #005661;
+}
+
+form {
+    /* width: 80vw; */
+    margin: 20px auto;
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+form table {
+    width: 100%;
+}
+
+form td {
+    padding: 10px;
+}
+
+form input[type=text], form input[type=submit] {
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+form input[type=submit] {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+form input[type=submit]:hover {
+    background-color: #0069d9;
+}
+
+.button-hapus{
+    background-color: rgb(255, 96, 96);
+    color: white;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    margin: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.button-hapus:hover{
+    background-color: rgb(255, 16, 16);
+}

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            height:100%;
+          }
+          
+          body {
+            margin:0;
+          }
+          
+          .bg {
+            animation:slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+            bottom:0;
+            left:-50%;
+            opacity:.5;
+            position:fixed;
+            right:-50%;
+            top:0;
+            z-index:-1;
+          }
+          
+          .bg2 {
+            animation-direction:alternate-reverse;
+            animation-duration:4s;
+          }
+          
+          .bg3 {
+            animation-duration:5s;
+          }
+          
+          .content {
+            background-color:rgba(255,255,255,.8);
+            border-radius:.25em;
+            box-shadow:0 0 .25em rgba(0,0,0,.25);
+            box-sizing:border-box;
+            left:50%;
+            padding:10vmin;
+            position:fixed;
+            text-align:center;
+            top:50%;
+            transform:translate(-50%, -50%);
+          }
+          
+          h1 {
+            font-family:monospace;
+          }
+          
+          @keyframes slide {
+            0% {
+              transform:translateX(-25%);
+            }
+            100% {
+              transform:translateX(25%);
+            }
+          }
+        body {
+            font-family: Helvetica, sans-serif;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+        }
+        .home {
+            width: 50vw;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin-bottom: 2vh;
+        }
+        
+    </style>
+</head>
+<body onload="initialize()">
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div class="home">
+        <h1>Infeksi Sistem Gastro-Usus</h1>
+        <p>Program ini berfungsi untuk mengidentifikasi penyakit apa yang menyerang anda berdasarkan gejala yang anda alami.
+            Semakin besar presentase maka semakin semakin besar kemungkinan anda terserang penyakit tersebut
+        </p>
+        <form action = "2.html">
+            <table border="1" align="center" cellpadding="2" cellspacing="0" >
+                <tr>
+                    <th>No.</th>
+                    <th>Gejala</th>
+                    <th>Checklist</th>
+                </tr>
+                <tr>
+                    <td>1.</td>
+                    <td>
+                        <label for = "gejala_1">Apakah anda sering mengalami buang air besar (lebih dari 2 kali)?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_1" name = "gejala_1" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_1" value = "False"/><br> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>
+                        <label for = "gejala_2">Apakah anda mengalami berak encer?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_2" name = "gejala_2" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_2" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3.</td>
+                    <td>
+                        <label for = "gejala_3">Apakah anda mengalami berak berdarah?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_3" name = "gejala_3" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_3" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4.</td>
+                    <td>
+                        <label for = "gejala_4">Apakah anda mearasa lesu dan tidak bergairah?</label>
+                    </td>                
+                    <td>
+                        <input type = "checkbox" id = "gejala_4" name = "gejala_4" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_4" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td>
+                        <label for = "gejala_5">Apakah anda tidak selera makan?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_5" name = "gejala_5" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_5" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6.</td>
+                    <td>
+                        <label for = "gejala_6">Apakah anda merasa mual dan sering muntah (lebih dari 1 kali)?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_6" name = "gejala_6" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_6" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7.</td>
+                    <td>
+                        <label for = "gejala_7">Apakah anda merasa sakit dibagian perut?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_7" name = "gejala_7" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_7" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8.</td>
+                    <td>
+                        <label for = "gejala_8">Apakah tekanan darah anda rendah?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_8" name = "gejala_8" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_8" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9.</td>
+                    <td>
+                        <label for = "gejala_9">Apakah anda merasa pusing?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_9" name = "gejala_9" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_9" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10.</td>
+                    <td>
+                        <label for = "gejala_10">Apakah anda mengalami pingsan?</label>
+                    </td>                
+                    <td>
+                        <input type = "checkbox" id = "gejala_10" name = "gejala_10" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_10" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11.</td>
+                    <td>
+                        <label for = "gejala_11">Apakah suhu badan anda tinggi?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_11" name = "gejala_11" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_11" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12.</td>
+                    <td>
+                        <label for = "gejala_12">Apakah anda mengalai luka dibagian tertentu?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_12" name = "gejala_12" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden"  name = "gejala_12" value = "False"/><br>                                    
+                    </td>
+                </tr>
+                <tr>
+                    <td>13.</td>
+                    <td>
+                        <label for = "gejala_13">Apakah anda tidak dapat menggerakkan anggota badan tertentu?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_13" name = "gejala_13" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_13" value = "False"/><br>                                    
+                    </td>
+                </tr>
+                <tr>
+                    <td>14.</td>
+                    <td>
+                        <label for = "gejala_14">Apakah anda pernah memakan sesuatu?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_14" name = "gejala_14" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_14" value = "False"/><br>                                    
+                    </td>
+                </tr>
+                <tr>
+                    <td>15.</td>
+                    <td>
+                        <label for = "gejala_15">Apakah anda memakan daging?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_15" name = "gejala_15" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_15" value = "False"/><br>                                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>16.</td>
+                    <td>
+                        <label for = "gejala_16">Apakah anda memakan jamur?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_16" name = "gejala_16" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_16" value = "False"/><br>                                   
+                    </td>
+                </tr>
+                <tr>
+                    <td>17.</td>
+                    <td>
+                        <label for = "gejala_17">Apakah anda memakan makanan kaleng ?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id ="gejala_17" name = "gejala_17" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_17" value = "False"/><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18.</td>
+                    <td>
+                        <label for = "gejala_18">Apakah anda membeli susu?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_18" name = "gejala_18" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_18" value = "False"/><br>                  
+                    </td>
+                </tr>
+                <tr>
+                    <td>19.</td>
+                    <td>
+                        <label for = "gejala_19">Apakah anda meminum susu?</label>
+                    </td>
+                    <td>
+                        <input type = "checkbox" id = "gejala_19" name = "gejala_19" value = "True" onclick="highlightRow(this)"/>
+                        <input type = "hidden" name = "gejala_19" value = "False"/><br>
+                    </td>
+                </tr>
+            </table>
+        <button type="submit" onclick="submitForm()">Submit</button>
+        </form>
+    </div>
+    <script>
+        function initialize() {
+            function submitFrom() {
+                var gejala_1  = document.getElementById("gejala_1").value;
+                var gejala_2  = document.getElementById("gejala_2").value;
+                var gejala_3  = document.getElementById("gejala_3").value;
+                var gejala_4  = document.getElementById("gejala_4").value;
+                var gejala_5  = document.getElementById("gejala_5").value;
+                var gejala_6  = document.getElementById("gejala_6").value;
+                var gejala_7  = document.getElementById("gejala_7").value;
+                var gejala_8  = document.getElementById("gejala_8").value;
+                var gejala_9  = document.getElementById("gejala_9").value;
+                var gejala_10 = document.getElementById("gejala_10").value;
+                var gejala_11 = document.getElementById("gejala_11").value;
+                var gejala_12 = document.getElementById("gejala_12").value;
+                var gejala_13 = document.getElementById("gejala_13").value;
+                var gejala_14 = document.getElementById("gejala_14").value;
+                var gejala_15 = document.getElementById("gejala_15").value;
+                var gejala_16 = document.getElementById("gejala_16").value;
+                var gejala_17 = document.getElementById("gejala_17").value;
+                var gejala_18 = document.getElementById("gejala_18").value;
+                var gejala_19 = document.getElementById("gejala_19").value;            
+
+            //Mengirim nilai input ke file link.html
+            window.location.href = "link.html?gejala_1=" + gejala_1 + "$gejala_2=" + gejala_2 + "$gejala_3=" + gejala_3 + "$gejala_4="
+            gejala_4 + "$gejala_5=" + gejala_5 + "$gejala_6=" + gejala_6 + "$gejala_7=" + gejala_7 + "$gejala_8=" + gejala_8 + 
+            "$gejala_9=" + gejala_9 + "$gejala_10=" + gejala_10 + "$gejala_11=" + gejala_11 + "$gejala_12=" + gejala_12 + "$gejala_13="
+             + gejala_13 + "$gejala_14=" + gejala_14 + "$gejala_15=" + gejala_15 + "$gejala_16=" + gejala_16 + "$gejala_17=" + gejala_17
+            + "$gejala_18=" + gejala_18 + "$gejala_19=" + gejala_19;
+            }
+        }
+        function highlightRow(checkbox) {
+            var row = checkbox.parentNode.parentNode;
+            if (checkbox.checked) {
+              row.style.backgroundColor = 'pink';
+            } else {
+              row.style.backgroundColor = '';
+            }
+          }
+    </script>   
+</body>
+</html>

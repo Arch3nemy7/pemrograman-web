@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Document</title>
+    <style>
+      a:link, a:visited {
+        background-color: #f44336;
+        color: white;
+        padding: 14px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+      
+      a:hover, a:active {
+        background-color: red;
+      }     
+      .chart1-container {
+        background-color: rgb(201, 169, 166);
+        padding: 10px;
+      }
+      .custom-header {
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+      }
+      body {
+        margin: auto;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow: auto;
+        background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+        animation: gradient 15s ease infinite;
+        background-size: 400% 400%;
+        background-attachment: fixed;
+    }
+    
+    @keyframes gradient {
+        0% {
+            background-position: 0% 0%;
+        }
+        50% {
+            background-position: 100% 100%;
+        }
+        100% {
+            background-position: 0% 0%;
+        }
+    }
+    
+    .wave {
+        background: rgb(255 255 255 / 25%);
+        border-radius: 1000% 1000% 0 0;
+        position: fixed;
+        width: 200%;
+        height: 12em;
+        animation: wave 10s -3s linear infinite;
+        transform: translate3d(0, 0, 0);
+        opacity: 0.8;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+    }
+    
+    .wave:nth-of-type(2) {
+        bottom: -1.25em;
+        animation: wave 18s linear reverse infinite;
+        opacity: 0.8;
+    }
+    
+    .wave:nth-of-type(3) {
+        bottom: -2.5em;
+        animation: wave 20s -1s reverse infinite;
+        opacity: 0.9;
+    }
+    
+    @keyframes wave {
+        2% {
+            transform: translateX(1);
+        }
+    
+        25% {
+            transform: translateX(-25%);
+        }
+    
+        50% {
+            transform: translateX(-50%);
+        }
+    
+        75% {
+            transform: translateX(-25%);
+        }
+    
+        100% {
+            transform: translateX(1);
+        }
+    }
+      
+      body {
+          font-family: Helvetica, sans-serif;
+          font-size: 14px;
+          display: flex;
+          justify-content: center;
+      }
+      .home {
+          width: 30vw;
+      }
+      h1 {
+          text-align: center;
+      }
+      table.small {
+        width: 17%;
+        margin-bottom: 2vh;
+      }
+      
+      table.medium {
+        width: 21%;
+        margin-bottom: 2vh;
+      }
+      
+      table.large {
+        width: 34%;
+        margin-bottom: 2vh;
+      }
+      .Dir {
+        display: flex;
+        flex-direction: column;
+      }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body class="Dir">
+  <div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+ </div>
+      <h1>Gejala Awal</h1>
+      <table class = "large" border="1" align="center" cellpadding="2" cellspacing="0" id="table-gejala-awal">
+        <thead>
+          <tr>
+            <th class="custom-header">No.</th>
+            <th class="custom-header">Gejala Awal</th>
+            <th class="custom-header">Jawaban Pasien</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <h1>Gejala Lanjut</h1>
+      <table class = "small" border="1" align="center" cellpadding="2" cellspacing="0" id="table-gejala-lanjut" >
+        <thead>
+          <tr>
+            <th class="custom-header">No.</th>
+            <th class="custom-header">Gejala Lanjut</th>
+            <th class="custom-header">Presentase</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+        
+    </table>
+    <div class = "chart1-container" id="chart1">Persebaran Gejala Lanjut</div>
+    <h1>Penyakit</h1>
+    <table class = "medium" border="1" align="center" cellpadding="2" cellspacing="0" id="table-penyakit">
+        <thead>
+          <tr>
+            <th class="custom-header">No.</th>
+            <th class="custom-header">Nama Penyakit</th>
+            <th class="custom-header">Persentase</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <div class = "chart1-container" id="chart2">Persebaran Penyakit</div>
+    <script>
+        function initialize() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var gejala_1 = urlParams.get("gejala_1");
+            var gejala_2 = urlParams.get("gejala_2");
+            var gejala_3 = urlParams.get("gejala_3");
+            var gejala_4 = urlParams.get("gejala_4");
+            var gejala_5 = urlParams.get("gejala_5");
+            var gejala_6 = urlParams.get("gejala_6");
+            var gejala_7 = urlParams.get("gejala_7");
+            var gejala_8 = urlParams.get("gejala_8");
+            var gejala_9 = urlParams.get("gejala_9");
+            var gejala_10 = urlParams.get("gejala_10");
+            var gejala_11 = urlParams.get("gejala_11");
+            var gejala_12 = urlParams.get("gejala_12");
+            var gejala_13 = urlParams.get("gejala_13");
+            var gejala_14 = urlParams.get("gejala_14");
+            var gejala_15 = urlParams.get("gejala_15");
+            var gejala_16 = urlParams.get("gejala_16");
+            var gejala_17 = urlParams.get("gejala_17");
+            var gejala_18 = urlParams.get("gejala_18");
+            var gejala_19 = urlParams.get("gejala_19");
+
+            var gejalaList = [  gejala_1,  gejala_2,  gejala_3,  gejala_4,  gejala_5,  gejala_6,  gejala_7,  gejala_8,  gejala_9,  gejala_10,  gejala_11,  gejala_12,  gejala_13,  gejala_14,  gejala_15,  gejala_16,  gejala_17,  gejala_18,  gejala_19];
+            var listGejalaAwal = [[0, 1, 3, 4], [3, 4, 5], [3, 6], [3, 7, 8], [7, 9], [3, 4, 8, 10], [3, 7, 10, 11], [3, 12], [0, 1, 2, 3, 4], [13, 14], [13, 15], [13, 16], [17,18]];
+            var listGejalaLanjut1 = [];
+            var listGejalaLanjut2 = [[0, 1, 2, 3, 9], [0, 1, 2, 4, 10], [0, 1, 2, 5, 6, 9], [1, 7, 11], [2, 5, 8, 12]];
+            var listPenyakit = [];
+
+            for (var gejalaAwal of listGejalaAwal) {
+                var total1 = gejalaAwal.filter(i => gejalaList[i]==="True").length;
+                var persentase1 = total1 / gejalaAwal.length * 100;
+                listGejalaLanjut1.push(persentase1);
+            }
+            
+            for (var gejalaLanjut of listGejalaLanjut2) {
+                var persentaseTotal = 0;
+                for (var i of gejalaLanjut) {
+                persentaseTotal += listGejalaLanjut1[i];
+                }
+                var persentase2 = persentaseTotal / gejalaLanjut.length;
+                listPenyakit.push(persentase2);
+                }
+            var maxPercentage = Math.max(...listPenyakit);
+            var index = listPenyakit.indexOf(maxPercentage);
+            var penyakitTertinggi = "";
+            var penyakitKedua = "";
+            switch (index) {
+                case 0:
+                  penyakitTertinggi = "Keracunan Staphylococcus Aureus";
+                  break;
+                case 1:
+                  penyakitTertinggi = "Keracunan Jamur Beracun";
+                  break;
+                case 2:
+                  penyakitTertinggi = "Keracunan Salmonellae";
+                  break;
+                case 3:
+                  penyakitTertinggi = "Keracunan Clostridium B otulinum";
+                  break;
+                case 4:
+                  penyakitTertinggi = "Keracunan Campylobacter";
+                  break;
+                default:
+                  penyakitTertinggi = "Tidak ada penyakit yang terdeteksi";
+                  break;
+            }
+              
+            if (listPenyakit.filter(p => p === maxPercentage).length > 1) {
+              var maxPercentage = Math.max(...listPenyakit);
+              const penyakitTertinggiLain = [];
+              var nama = ["Keracunan Staphylococcus Aureus", "Keracunan Jamur Beracun", "Keracunan Salmonellae",
+                    "Keracunan Clostridium Botulinum", "Keracunan Campylobacter"];
+              for (let i = 0; i < listPenyakit.length; i++) {
+                if (listPenyakit[i] === maxPercentage) {
+                  penyakitTertinggiLain.push(nama[i]);
+                }
+              }
+              const penyakitTertinggiLainText = penyakitTertinggiLain.join(", ");
+              return [gejalaList, listGejalaLanjut1, listPenyakit, penyakitTertinggiLainText, maxPercentage];
+            } else {
+              return [gejalaList, listGejalaLanjut1, listPenyakit, penyakitTertinggi, maxPercentage];
+            }
+          }
+          document.addEventListener('DOMContentLoaded', function() {
+            var tbody = document.querySelector('#table-gejala-awal tbody');
+            var no = 1;
+            var listPresentasePenyakit = initialize()
+            var namaGejalaAwal = listPresentasePenyakit[0];
+          
+            namaGejalaAwal.forEach(function(nama, index) {
+              var nama = ["Apakah anda sering mengalami buang air besar (lebih dari 2 kali)?", "Apakah anda mengalami berak encer?", "Apakah anda mengalami berak berdarah?",     "Apakah anda merasa lesu dan tidak bergairah?", "Apakah anda tidak selera makan?", "Apakah anda merasa mual dan sering muntah (lebih dari 1 kali) ?"    , "Apakah anda merasa sakit di bagian perut ?", "Apakah tekanan darah anda rendah ?", "Apakah anda merasa pusing ?", "Apakah anda mengalami pingsan ?"    , "Apakah suhu badan anda tinggi ?", "Apakah anda mengalami luka di bagian tertentu ?", "Apakah anda tidak dapat menggerakkan anggota badan tertentu ?",    "Apakah anda pernah memakan sesuatu ?", "Apakah anda memakan daging ?", "Apakah anda memakan jamur ?", "Apakah anda memakan makanan kaleng ?",    "Apakah anda membeli susu ?", "Apakah anda meminum susu ?"];
+              var tr = document.createElement('tr');
+              var tdNo = document.createElement('td');
+              var tdGejalaAwal = document.createElement('td');
+              var tdPasien = document.createElement('td');
+            
+              tdNo.textContent = no;
+              tdGejalaAwal.textContent = nama[index];
+              tdPasien.textContent = namaGejalaAwal[index];
+              
+              if (namaGejalaAwal[index] === 'True') {
+                tr.style.backgroundColor = 'lightgreen';
+              } else if (namaGejalaAwal[index] === 'False') {
+                tr.style.backgroundColor = 'salmon';
+              }
+
+              
+              tr.appendChild(tdNo);
+              tr.appendChild(tdGejalaAwal);
+              tr.appendChild(tdPasien);
+              
+              tbody.appendChild(tr);
+            
+              no++;
+            });
+          });
+            document.addEventListener('DOMContentLoaded', function() {
+              var tbody = document.querySelector('#table-gejala-lanjut tbody');
+              var no = 1;
+              var listPresentasePenyakit = initialize()
+              var namaGejalaLanjut = listPresentasePenyakit[1];
+              var maxGejalaLanjut = Math.max(...namaGejalaLanjut);
+              var minGejalaLanjut = Math.min(...namaGejalaLanjut);
+
+              namaGejalaLanjut.forEach(function(nama, index) {
+                var nama = ["Mencret", "Muntah", "Sakit Perut", "Darah Rendah" , "Koma", "Demam", "Septicaemia", "Lumpuh", "Mencret Berdarah",
+                "Makan Daging", "Makan Jamur", "Makan Makanan Kaleng", "Minum Susu"];
+                var tr = document.createElement('tr');
+                var tdNo = document.createElement('td');
+                var tdGejalaLanjut = document.createElement('td');
+                var tdPresentase = document.createElement('td');
+              
+                tdNo.textContent = no;
+                tdGejalaLanjut.textContent = nama[index];
+                tdPresentase.textContent = namaGejalaLanjut[index].toFixed(2) + '%';
+                
+                if (namaGejalaLanjut[index] === maxGejalaLanjut) {
+                  tr.style.backgroundColor = 'lightgreen';
+                } else if (namaGejalaLanjut[index] === minGejalaLanjut) {
+                  tr.style.backgroundColor = 'lightcoral'; 
+                } else {
+                  tr.style.backgroundColor = 'lightyellow';
+                }
+
+                tr.appendChild(tdNo);
+                tr.appendChild(tdGejalaLanjut);
+                tr.appendChild(tdPresentase);
+                
+                tbody.appendChild(tr);
+              
+                no++;
+                
+              });
+              var options = {
+                series: [{
+                data: namaGejalaLanjut
+              }],
+                chart: {
+                type: 'bar',
+                height: 500
+              },
+              plotOptions: {
+                bar: {
+                  borderRadius: 4,
+                  horizontal: true,
+                }
+              },
+              dataLabels: {
+                enabled: false
+              },
+              xaxis: {
+                categories: ["Mencret", "Muntah", "Sakit Perut", "Darah Rendah" , "Koma", "Demam", "Septicaemia", "Lumpuh", "Mencret Berdarah",
+                "Makan Daging", "Makan Jamur", "Makan Makanan Kaleng", "Minum Susu"],
+              }
+              };
+      
+              var chart = new ApexCharts(document.querySelector("#chart1"), options);
+              chart.render();
+          });
+              document.addEventListener('DOMContentLoaded', function() {
+                  var tbody = document.querySelector('#table-penyakit tbody');
+                  var no = 1;
+                  var listPresentasePenyakit = initialize()
+                  var namaPenyakit = listPresentasePenyakit[2];
+                  var maxPenyakit = Math.max(...namaPenyakit);
+                  var minPenyakit = Math.min(...namaPenyakit);
+
+                  namaPenyakit.forEach(function(nama, index) {
+                    var nama = ["Keracunan Staphylococcus Aureus", "Keracunan Jamur Beracun", "Keracunan Salmonellae",
+                    "Keracunan Clostridium Botulinum", "Keracunan Campylobacter"];
+                    var tr = document.createElement('tr');
+                    var tdNo = document.createElement('td');
+                    var tdNama = document.createElement('td');
+                    var tdPersentase = document.createElement('td');
+                  
+                    tdNo.textContent = no;
+                    tdNama.textContent = nama[index];
+                    tdPersentase.textContent = namaPenyakit[index].toFixed(2) + '%';
+                  
+                    if (namaPenyakit[index] === maxPenyakit) {
+                      tr.style.backgroundColor = 'lightgreen'; 
+                    } else if (namaPenyakit[index] === minPenyakit) {
+                      tr.style.backgroundColor = 'lightcoral'; 
+                    } else {
+                      tr.style.backgroundColor = 'lightyellow'; 
+                    }
+
+                    tr.appendChild(tdNo);
+                    tr.appendChild(tdNama);
+                    tr.appendChild(tdPersentase);
+                  
+                    tbody.appendChild(tr);
+                
+                    no++;
+
+                    
+                  });
+                  var options = {
+                    series: [{
+                    data: namaPenyakit
+                  }],
+                    chart: {
+                    type: 'bar',
+                    height: 300
+                  },
+                  plotOptions: {
+                    bar: {
+                      borderRadius: 4,
+                      horizontal: true,
+                    }
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  xaxis: {
+                    categories: ["Keracunan Staphylococcus Aureus", "Keracunan Jamur Beracun", "Keracunan Salmonellae",
+                    "Keracunan Clostridium Botulinum", "Keracunan Campylobacter"],
+                  }
+                  };
+          
+                  var chart = new ApexCharts(document.querySelector("#chart2"), options);
+                  chart.render();
+              });
+              var result = initialize();
+              var penyakitTertinggi = result[3];
+              var maxPercentage = result[4];
+              
+              if (Array.isArray(penyakitTertinggi)) {
+                alert(`Anda terkena penyakit ${penyakitTertinggi} dengan persentase ${maxPercentage.toFixed(2)}%.`);
+              } else {
+                alert(`Anda terkena penyakit ${penyakitTertinggi} dengan persentase ${maxPercentage.toFixed(2)}%.`);
+              }
+      </script>
+    <a href = 1.html>Diagnosis lagi</a>  
+</body>
+</html>
